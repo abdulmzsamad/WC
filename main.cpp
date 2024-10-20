@@ -3,7 +3,7 @@
 #include <string>
 #include <filesystem>
 
-int main() {
+int main(int argc, char* argv[]) {
     std::string choice;
     std::string inputFile;
 
@@ -11,6 +11,15 @@ int main() {
     std::cout << "Enter the file name (without extension): ";
     std::getline(std::cin, inputFile);
     inputFile += ".txt";  // Append .txt extension
+
+    if (argc > 1) {
+        inputFile = argv[1];
+    }
+    else {
+        inputFile = "text.txt";  // Default filename
+        std::cout << "No filename provided. Using default: " << inputFile << std::endl;
+    }
+
 
     // Create a WC object for the specified file
     WC WC(inputFile);
